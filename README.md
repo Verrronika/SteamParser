@@ -25,4 +25,4 @@
 Сохраните игры в формате json, оставив только игры, выпущенные после 2000 года
 
 Запустить:
-scrapy crawl steam -O items.json
+___scrapy crawl steam -O items.json
