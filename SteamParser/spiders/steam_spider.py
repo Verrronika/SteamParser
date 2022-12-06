@@ -42,5 +42,6 @@ class BookSpider(scrapy.Spider):
         items['tags'] = [el.split('\t\t\t\t\t\t\t\t\t\t\t\t')[1] for el in response.xpath('//a[@class="app_tag"]/text()').extract()]
         items['price'] = price                         
         items['platforms'] = platforms
-    yield items
+        yield items
+    yield
 
