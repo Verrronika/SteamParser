@@ -32,15 +32,15 @@ class BookSpider(scrapy.Spider):
         platforms.add(platform.get().strip())
 
     data = response.xpath('//div[@class="date"]/text()').extract_first()
-
-    items['name'] = response.xpath('//span[@itemprop="name"]/text()').extract_first()
-    items['category'] = response.xpath('//div[@class="blockbg"]/a/text()').extract()
-    items['number_of_reviews'] = response.xpath('//meta[@itemprop="reviewCount"]/@content').extract_first()
-    items['raiting'] = response.xpath('//meta[@itemprop="ratingValue"]/@content').extract_first()
-    items['data'] = data
-    items['developer'] = response.xpath('//div[@class="dev_row"]/a/text()').extract_first()
-    items['tags'] = [el.split('\t\t\t\t\t\t\t\t\t\t\t\t')[1] for el in response.xpath('//a[@class="app_tag"]/text()').extract()]
-    items['price'] = price                         
-    items['platforms'] = platforms
+    if int(data[-4:]) > 2000:
+        items['name'] = response.xpath('//span[@itemprop="name"]/text()').extract_first()
+        items['category'] = response.xpath('//div[@class="blockbg"]/a/text()').extract()
+        items['number_of_reviews'] = response.xpath('//meta[@itemprop="reviewCount"]/@content').extract_first()
+        items['raiting'] = response.xpath('//meta[@itemprop="ratingValue"]/@content').extract_first()
+        items['data'] = data
+        items['developer'] = response.xpath('//div[@class="dev_row"]/a/text()').extract_first()
+        items['tags'] = [el.split('\t\t\t\t\t\t\t\t\t\t\t\t')[1] for el in response.xpath('//a[@class="app_tag"]/text()').extract()]
+        items['price'] = price                         
+        items['platforms'] = platforms
     yield items
 
