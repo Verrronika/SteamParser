@@ -11,7 +11,7 @@ class BookSpider(scrapy.Spider):
         url_pattern = 'https://store.steampowered.com/search/?term'
         
         for search_request in search_requests:
-            for page_number in range(1, 10):
+            for page_number in range(1, 3):
                 yield scrapy.Request(url=f'{url_pattern}={search_request}&page={page_number}', callback=self.parse)
 
 
